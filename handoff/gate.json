@@ -1,8 +1,8 @@
 {
-  "task": "做一个展示网页,里面有3d模型,展示火山的形成与影响",
+  "task": "TASK-001",
   "round1": {
-    "brief": "handoff/briefs/做一个展示网页,里面有3d模型,展示火山的形成与影响.md",
-    "plan": "handoff/plans/做一个展示网页,里面有3d模型,展示火山的形成与影响.md",
-    "guardedPaths": ["src/","web/","public/","assets/","scripts/","tests/","styles/","index.html","package.json","vite.config.js"]
+    "brief": "handoff/briefs/TASK-001.md",
+    "plan": "handoff/plans/TASK-001.md",
+    "guardedPaths": ["src/", "web/", "public/", "assets/", "scripts/", "tests/", "styles/", "index.html", "package.json", "vite.config.js"]
   }
 }
