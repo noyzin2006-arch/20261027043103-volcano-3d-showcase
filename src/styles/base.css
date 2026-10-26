@@ -1,0 +1,368 @@
+/* ==========================================================================
+   基础层：reset / 排版 / 布局 / 焦点 / 响应式
+   依据：handoff/plans/TASK-001.md §3.1 断点规则 + §5.1 + design-quality-bar.md A1–A5
+   规则：颜色只用 var(--*)；动画只用 transform / opacity。
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg-0);
+  color: var(--text-2);
+  font-family: var(--font-body);
+  font-size: var(--fz-2);
+  line-height: var(--lh-body);
+  font-feature-settings: "kern" 1, "palt" 1;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* 段落首行不缩进；段间用间距，不用空行 */
+p + p {
+  margin-top: var(--sp-4);
+}
+
+/* 标题层级全部重置，不使用浏览器默认 h1–h6 字号 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-1);
+  font-weight: var(--fw-semi);
+  line-height: var(--lh-tight);
+  overflow-wrap: break-word;
+}
+
+h1 {
+  font-size: var(--fz-6);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+h2 {
+  font-size: var(--fz-4);
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.28;
+}
+h3 {
+  font-size: var(--fz-3);
+  font-weight: var(--fw-semi);
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+h4 {
+  font-size: var(--fz-2);
+  font-weight: var(--fw-semi);
+}
+
+/* 数字、单位、代码使用等宽数字，不随宽度跳动 */
+.num,
+code,
+kbd,
+samp {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* 表单控件全部重置 */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+  background: none;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+  text-align: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+a:hover {
+  color: var(--accent-pale);
+}
+
+/* 图片与媒体：定义尺寸，不造成布局跳动 */
+img,
+svg,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+/* 焦点环：≥2px + 2px offset，永不挪动布局 */
+:focus-visible {
+  outline: var(--border-strong) solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-1);
+}
+
+/* 跳到主内容 */
+.skip-link {
+  position: absolute;
+  left: var(--sp-4);
+  top: var(--sp-4);
+  z-index: var(--z-alert);
+  padding: var(--sp-2) var(--sp-4);
+  min-height: var(--tap-min);
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-3);
+  color: var(--text-1);
+  border: var(--border-strong) solid var(--focus);
+  border-radius: var(--radius-2);
+  font-size: var(--fz-1);
+  transform: translateY(calc(-100% - var(--sp-6)));
+  transition: transform var(--d-normal) var(--ease-enter);
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ---------- 布局骨架 ---------- */
+
+#app {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+  padding: var(--sp-6) var(--sp-4) var(--sp-16);
+  max-width: var(--container);
+  margin-inline: auto;
+  width: 100%;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+
+.site-header__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.site-header__eyebrow {
+  font-size: var(--fz-0);
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.06em;
+  line-height: var(--sp-4);
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
+.site-header__title {
+  max-width: 16ch;
+}
+
+/* 主区：舞台 + 解说栏 */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-6);
+  align-items: start;
+  min-width: 0;
+}
+.layout:focus {
+  outline: none;
+}
+
+/* 解说栏阅读宽度上限 */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  min-width: 0;
+  max-width: 560px;
+}
+
+.dossier {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-8);
+  min-width: 0;
+}
+
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  padding-top: var(--sp-8);
+  border-top: var(--border-thin) solid var(--line-1);
+  color: var(--text-3);
+  font-size: var(--fz-1);
+  max-width: 560px;
+}
+
+.noscript {
+  max-width: 680px;
+  margin: var(--sp-12) auto;
+  padding: var(--sp-6);
+  background: var(--bg-1);
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-3);
+  color: var(--text-2);
+}
+.noscript h2 {
+  margin-bottom: var(--sp-3);
+}
+
+/* 减少动效：仅在用户显式偏好时关闭 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ==========================================================================
+   响应式（断点数值与规则见规划案 §3.1）
+   0–479 / 480–767 / 768–1023 / 1024–1279 / ≥1280 / ≥1440
+   ========================================================================== */
+
+/* ≤ 1023px：单列 */
+@media (max-width: 1023px) {
+  #app {
+    max-width: 920px;
+  }
+  .site-header__title {
+    font-size: var(--fz-4);
+    max-width: 14ch;
+  }
+}
+
+/* 768–1023：资料卡两列 */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .dossier {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* 480–767：内边距 24px */
+@media (min-width: 480px) and (max-width: 767px) {
+  #app {
+    padding-inline: var(--sp-6);
+  }
+}
+
+/* ≤ 767：移动端 */
+@media (max-width: 767px) {
+  #app {
+    gap: var(--sp-6);
+    padding-bottom: var(--sp-12);
+  }
+  .site-header {
+    align-items: stretch;
+  }
+  .site-header__title {
+    font-size: var(--fz-4);
+    max-width: 12ch;
+  }
+  .panel {
+    max-width: none;
+  }
+}
+
+/* 1024–1279：场景/解说 7:5 */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  #app {
+    max-width: 1160px;
+    padding-inline: var(--sp-6);
+  }
+  .layout {
+    grid-template-columns: 7fr 5fr;
+    gap: var(--sp-6);
+  }
+}
+
+/* ≥1280：场景/解说 8:4 */
+@media (min-width: 1280px) {
+  #app {
+    max-width: var(--container);
+    padding-inline: var(--sp-8);
+    gap: var(--sp-12);
+  }
+  .layout {
+    grid-template-columns: 8fr 4fr;
+    gap: var(--sp-8);
+  }
+}
+
+/* ≥1440：外留白 ≥64px */
+@media (min-width: 1440px) {
+  #app {
+    padding-inline: var(--sp-16);
+  }
+}
+
+/* 移动端横屏且高度不足：模型高度固定，不挤压文案 */
+@media (max-height: 560px) and (orientation: landscape) {
+  .stage__canvas-wrap {
+    height: 320px;
+  }
+}

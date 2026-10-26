@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>火山｜地球内部的力量 — 3D 交互科学图鉴</title>
+    <meta
+      name="description"
+      content="用可旋转的 3D 火山模型讲解火山的形成（洋中脊、俯冲带、热点）与影响（喷发柱、航空、气候、山麓危险、地热馈赠）。科学结构示意，不代表真实比例。"
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#080F14" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主内容</a>
+
+    <div id="app">
+      <header class="site-header">
+        <div class="site-header__brand">
+          <p class="site-header__eyebrow">互动地球科学</p>
+          <h1 class="site-header__title">火山｜地球内部的力量</h1>
+        </div>
+        <nav class="chapter-nav" aria-label="展章切换">
+          <button
+            type="button"
+            class="chapter-nav__btn"
+            data-chapter="formation"
+            aria-current="page"
+          >
+            01 火山如何形成
+          </button>
+          <button type="button" class="chapter-nav__btn" data-chapter="impact">
+            02 喷发如何影响世界
+          </button>
+        </nav>
+      </header>
+
+      <main id="main" class="layout" tabindex="-1">
+        <figure class="stage" data-slot="stage">
+          <div
+            class="stage__status"
+            data-slot="status"
+            role="status"
+            aria-live="polite"
+          >
+            正在准备展台
+          </div>
+          <div class="stage__canvas-wrap" data-slot="canvas"></div>
+          <figcaption class="stage__caption">
+            科学结构示意 · 非实测比例 · 图像不代表任何一座真实火山的尺度
+          </figcaption>
+          <div class="stage__toolbar" data-slot="toolbar" role="group" aria-label="视角控制"></div>
+          <div class="stage__legend" data-slot="legend" aria-label="图例"></div>
+        </figure>
+
+        <div class="panel" data-slot="panel"></div>
+      </main>
+
+      <section class="dossier" data-slot="dossier" aria-label="数据与来源"></section>
+
+      <footer class="site-footer" data-slot="footer"></footer>
+    </div>
+
+    <noscript>
+      <div class="noscript">
+        <h2>本展项需要 JavaScript 展示交互</h2>
+        <p>
+          这是一个 3D 交互展项，需要 JavaScript 才能旋转火山模型、切换地质环境与播放喷发示意。
+          下方来源说明仍可阅读。
+        </p>
+        <p>
+          火山形成于三种地质环境：洋中脊（板块分离）、俯冲带（洋板块下沉、含水岩石部分熔化）、
+          地幔热柱（板内固定热点）。岩浆自深部部分熔融带上涌、储集，挥发分随压力降低析出，
+          熔岩与碎屑物反复喷出堆积成不同山形。
+        </p>
+        <p>
+          喷发的影响包括喷发柱与火山碎屑流、灰对航空器的磨蚀与熔融、SO₂ 在平流层形成硫酸盐气溶胶
+          造成的短期降温、山麓的碎屑流与火山泥流，以及肥沃火山土、地热发电与热液生态等馈赠。
+          本页所列数值来自本项目策展简报（2026-10-27 复核），为汇编口径。
+        </p>
+      </div>
+    </noscript>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

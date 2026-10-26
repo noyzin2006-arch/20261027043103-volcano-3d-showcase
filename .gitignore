@@ -14,3 +14,9 @@ id_rsa*
 id_ed25519*
 *.db
 *.sqlite3
+
+# build output
+dist/
+
+# local browser profile used by smoke-cdp
+.chrome-profile/
