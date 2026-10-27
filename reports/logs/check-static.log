@@ -1,0 +1,19 @@
+
+> volcano-3d-showcase@1.0.0 check:static
+> node scripts/check-dist.mjs
+
+审计目录：/Users/sheng/Projects/20261027043103-volcano-3d-showcase/dist
+规则：src/srcset/poster/data-src、<script src>、<link href>、CSS url()/@import、
+      JS 的 fetch/XHR/Image/importScripts/EventSource/WebSocket/sendBeacon/import()
+      实参中出现绝对外部 URL 即违规；serviceWorker.register 即违规。
+豁免：<a> 带 rel="noopener noreferrer" + data-citation、<details> 来源块内、来源类容器内的链接。
+────────────────────────────────────────────────────────────────────────
+ℹ️ 引用链接（豁免）0 条。
+✓ 未发现违规。
+────────────────────────────────────────────────────────────────────────
+ℹ️ dist 总体积：668.9 KiB（3 个文件）
+   gzip dist/assets/index-DNYw-DoE.js：167.6 KiB（原始 645.9 KiB）
+   gzip dist/assets/index-DqLWR8kH.css：4.3 KiB（原始 19.5 KiB）
+ℹ️ 静态扫描只能发现「字面量直接写在请求 API 处」的外部 URL；
+   变量拼接的外部地址由 scripts/smoke-cdp.mjs 的运行时零外部请求断言兜底。
+check-dist: 3 个文件，外部运行时请求 0，0 处违规

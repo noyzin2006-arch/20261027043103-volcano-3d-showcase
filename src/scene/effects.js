@@ -316,7 +316,7 @@ function buildHazard(palette, kind, seed, growth = 1) {
   lavaGroup.name = 'lava-flow';
   const lavaOuter = new THREE.Mesh(
     new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 48, 0.22, 6, false),
-    new THREE.MeshStandardMaterial({ color: 0x2b1a12, roughness: 0.95 })
+    new THREE.MeshStandardMaterial({ color: palette.lavaCrust, roughness: 0.95 })
   );
   const lavaCore = new THREE.Mesh(
     new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 48, 0.09, 6, false),
@@ -335,13 +335,13 @@ function buildHazard(palette, kind, seed, growth = 1) {
   laharGroup.name = 'lahar-flow';
   const laharBand = new THREE.Mesh(
     new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts.slice(Math.floor(pts.length * 0.25))), 36, 0.19, 6, false),
-    new THREE.MeshStandardMaterial({ color: 0x4a3b2a, roughness: 1 })
+    new THREE.MeshStandardMaterial({ color: palette.lahar, roughness: 1 })
   );
   const poolGeo = new THREE.CircleGeometry(0.85, 28);
   poolGeo.rotateX(-Math.PI / 2);
   const pool = new THREE.Mesh(
     poolGeo,
-    new THREE.MeshStandardMaterial({ color: 0x3d3226, roughness: 1 })
+    new THREE.MeshStandardMaterial({ color: palette.laharPool, roughness: 1 })
   );
   const last = pts[pts.length - 1];
   pool.position.set(last.x, last.y + 0.02, last.z);

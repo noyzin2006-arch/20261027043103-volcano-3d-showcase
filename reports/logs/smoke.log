@@ -1,0 +1,46 @@
+
+> volcano-3d-showcase@1.0.0 smoke
+> node scripts/smoke-cdp.mjs
+
+✅ PASS  静态服务器启动 —— http://127.0.0.1:4173/（根目录 /Users/sheng/Projects/20261027043103-volcano-3d-showcase/dist）
+ℹ️ Chrome：Chrome/156.0.8078.48（调试端口 53631）
+✅ PASS  Page.navigate 成功且触发 load 事件 —— url=http://127.0.0.1:4173/
+✅ PASS  document.title 非空 —— title="火山｜地球内部的力量 — 3D 交互科学图鉴"
+✅ PASS  页面存在 canvas —— canvas 数量=1
+✅ PASS  章节按钮存在且可达（2 个） —— button[data-chapter]=2（另有 4 个 [data-chapter] 作用域标记）
+✅ PASS  WebGL 上下文可用 —— canvas=725x624 类型=webgl2
+✅ PASS  画布像素非纯色（真实 3D 渲染） —— distinctColors=3305 nonBackgroundRatio=0.629 读取通道=screenshot
+✅ PASS  可点击「影响」章节按钮 —— 按钮文案="02 喷发如何影响世界"
+✅ PASS  切到「剖面」后画面像素发生变化 —— 画布签名变化=是(sumRel=0.06304, hashRel=0.044153) 整页截图变化=是；空闲漂移(hashRel=0.136449)；通道=screenshot；按钮=
+✅ PASS  喷发期间实测帧率（软件渲染档） —— 渲染帧 308 → 363，用时 1200ms，实测 45.8 FPS（headless SwiftShader 软件渲染，非 GPU）
+✅ PASS  启动喷发后画面像素发生变化 —— 画布签名变化=是(sumRel=0.06795, hashRel=0.013281) distinctColors 3933→2546；通道=webgl-readback；按钮=喷发进行中
+✅ PASS  喷发可暂停/停止 —— 按钮="暂停"
+✅ PASS  375px 视口无横向滚动 —— scrollWidth=375 clientWidth=375 innerWidth=375
+✅ PASS  1440px 视口无横向滚动 —— scrollWidth=1440 clientWidth=1440 innerWidth=1440
+✅ PASS  减弱动效（reduce）下喷发不自动开始 —— running=false 专用状态标记=有 状态条="3D 已就绪，可拖动旋转。"
+✅ PASS  运行期外部域名请求数为 0 —— 共 13 个请求，全部指向本地静态服务器
+✅ PASS  控制台错误数为 0 —— console error=0，未捕获异常=0（日志条目 5 条）
+✅ PASS  禁用 WebGL 时出现静态降级内容 —— 降级标记=有（data-fallback） 中文字数=2735 webgl2可用=false svg=10
+
+══════ 冒烟测试汇总 ══════
+✅ 静态服务器启动 —— http://127.0.0.1:4173/（根目录 /Users/sheng/Projects/20261027043103-volcano-3d-showcase/dist）
+✅ Page.navigate 成功且触发 load 事件 —— url=http://127.0.0.1:4173/
+✅ document.title 非空 —— title="火山｜地球内部的力量 — 3D 交互科学图鉴"
+✅ 页面存在 canvas —— canvas 数量=1
+✅ 章节按钮存在且可达（2 个） —— button[data-chapter]=2（另有 4 个 [data-chapter] 作用域标记）
+✅ WebGL 上下文可用 —— canvas=725x624 类型=webgl2
+✅ 画布像素非纯色（真实 3D 渲染） —— distinctColors=3305 nonBackgroundRatio=0.629 读取通道=screenshot
+✅ 可点击「影响」章节按钮 —— 按钮文案="02 喷发如何影响世界"
+✅ 切到「剖面」后画面像素发生变化 —— 画布签名变化=是(sumRel=0.06304, hashRel=0.044153) 整页截图变化=是；空闲漂移(hashRel=0.136449)；通道=screenshot；按钮=
+✅ 喷发期间实测帧率（软件渲染档） —— 渲染帧 308 → 363，用时 1200ms，实测 45.8 FPS（headless SwiftShader 软件渲染，非 GPU）
+✅ 启动喷发后画面像素发生变化 —— 画布签名变化=是(sumRel=0.06795, hashRel=0.013281) distinctColors 3933→2546；通道=webgl-readback；按钮=喷发进行中
+✅ 喷发可暂停/停止 —— 按钮="暂停"
+✅ 375px 视口无横向滚动 —— scrollWidth=375 clientWidth=375 innerWidth=375
+✅ 1440px 视口无横向滚动 —— scrollWidth=1440 clientWidth=1440 innerWidth=1440
+✅ 减弱动效（reduce）下喷发不自动开始 —— running=false 专用状态标记=有 状态条="3D 已就绪，可拖动旋转。"
+✅ 运行期外部域名请求数为 0 —— 共 13 个请求，全部指向本地静态服务器
+✅ 控制台错误数为 0 —— console error=0，未捕获异常=0（日志条目 5 条）
+✅ 禁用 WebGL 时出现静态降级内容 —— 降级标记=有（data-fallback） 中文字数=2735 webgl2可用=false svg=10
+─────────────────────────
+共 18 项检查，通过 18 项，失败 0 项。
+产物：reports/screenshots/desktop-formation.png、reports/screenshots/desktop-impact.png、reports/screenshots/mobile-formation.png、reports/screenshots/mobile-impact.png、reports/screenshots/webgl-error.png、reports/network-log.json

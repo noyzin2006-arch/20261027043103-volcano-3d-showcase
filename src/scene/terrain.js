@@ -172,19 +172,30 @@ export function smoothstep(e0, e1, x) {
  */
 export function readScenePalette() {
   const cs = getComputedStyle(document.documentElement);
-  const get = (name, fallback) => {
+  // 兜底用中性灰的数值分量，不写字面量色 —— 十六进制色只允许出现在 tokens.css
+  const NEUTRAL = [0.5, 0.5, 0.5];
+  const get = (name) => {
     const v = cs.getPropertyValue(name).trim();
-    return v ? new THREE.Color(v) : new THREE.Color(fallback);
+    return v ? new THREE.Color(v) : new THREE.Color(NEUTRAL[0], NEUTRAL[1], NEUTRAL[2]);
   };
   return {
-    rock: get('--scene-rock', '#515a59'),
-    strata: get('--scene-strata', '#76695a'),
-    ash: get('--scene-ash', '#b5b8b0'),
-    magma: get('--scene-magma', '#ff6c35'),
-    soil: get('--scene-soil', '#576956'),
-    plate: get('--scene-plate', '#4e8191'),
-    water: get('--scene-water', '#3c7f9d'),
-    aerosol: get('--scene-aerosol', '#a5c8db'),
+    rock: get('--scene-rock'),
+    strata: get('--scene-strata'),
+    ash: get('--scene-ash'),
+    magma: get('--scene-magma'),
+    soil: get('--scene-soil'),
+    plate: get('--scene-plate'),
+    water: get('--scene-water'),
+    aerosol: get('--scene-aerosol'),
+    lavaCrust: get('--scene-lava-crust'),
+    lahar: get('--scene-lahar'),
+    laharPool: get('--scene-lahar-pool'),
+    lightAmbient: get('--scene-light-ambient'),
+    lightKey: get('--scene-light-key'),
+    lightFill: get('--scene-light-fill'),
+    lightHead: get('--scene-light-head'),
+    lightHemiSky: get('--scene-light-hemi-sky'),
+    lightHemiGround: get('--scene-light-hemi-ground'),
   };
 }
 

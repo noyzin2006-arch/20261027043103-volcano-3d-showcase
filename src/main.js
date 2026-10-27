@@ -104,4 +104,14 @@ async function boot() {
 boot();
 
 // 便于调试与自动化测试挂载
-window.__volcano = { store, shell, get experience() { return experience; } };
+window.__volcano = {
+  store,
+  shell,
+  get experience() {
+    return experience;
+  },
+  /** 已渲染帧数（自动化实测 FPS 用） */
+  get frameCount() {
+    return experience?.frameCount ?? 0;
+  },
+};

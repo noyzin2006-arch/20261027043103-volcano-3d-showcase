@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T03:36:05.229Z",
+  "generatedAt": "2026-10-27T03:59:01.717Z",
   "chrome": "Chrome/156.0.8078.48",
   "server": "http://127.0.0.1:4173/",
   "requests": [
@@ -12,14 +12,14 @@
     },
     {
       "method": "GET",
-      "url": "http://127.0.0.1:4173/assets/index-BqWuu2fg.js",
+      "url": "http://127.0.0.1:4173/assets/index-Czo8Zd1L.js",
       "type": "Script",
       "status": 200,
       "error": null
     },
     {
       "method": "GET",
-      "url": "http://127.0.0.1:4173/assets/index-ldlcUJR5.css",
+      "url": "http://127.0.0.1:4173/assets/index-DqLWR8kH.css",
       "type": "Stylesheet",
       "status": 200,
       "error": null
@@ -40,14 +40,14 @@
     },
     {
       "method": "GET",
-      "url": "http://127.0.0.1:4173/assets/index-BqWuu2fg.js",
+      "url": "http://127.0.0.1:4173/assets/index-Czo8Zd1L.js",
       "type": "Script",
       "status": 200,
       "error": null
     },
     {
       "method": "GET",
-      "url": "http://127.0.0.1:4173/assets/index-ldlcUJR5.css",
+      "url": "http://127.0.0.1:4173/assets/index-DqLWR8kH.css",
       "type": "Stylesheet",
       "status": 200,
       "error": null
@@ -58,37 +58,37 @@
     {
       "method": "GET",
       "scheme": "data",
-      "urlLength": 216914,
+      "urlLength": 217362,
       "note": "非网络 scheme（data:/blob: 等），未联系任何域名"
     },
     {
       "method": "GET",
       "scheme": "data",
-      "urlLength": 221178,
+      "urlLength": 221474,
       "note": "非网络 scheme（data:/blob: 等），未联系任何域名"
     },
     {
       "method": "GET",
       "scheme": "data",
-      "urlLength": 221078,
+      "urlLength": 221462,
       "note": "非网络 scheme（data:/blob: 等），未联系任何域名"
     },
     {
       "method": "GET",
       "scheme": "data",
-      "urlLength": 284494,
+      "urlLength": 260790,
       "note": "非网络 scheme（data:/blob: 等），未联系任何域名"
     },
     {
       "method": "GET",
       "scheme": "data",
-      "urlLength": 285222,
+      "urlLength": 261386,
       "note": "非网络 scheme（data:/blob: 等），未联系任何域名"
     },
     {
       "method": "GET",
       "scheme": "data",
-      "urlLength": 285590,
+      "urlLength": 121038,
       "note": "非网络 scheme（data:/blob: 等），未联系任何域名"
     }
   ],
@@ -96,7 +96,7 @@
     {
       "type": "warning",
       "text": "[store] 忽略非法 action \"ERUPTION_TICK\"：dt=\"0\" 非法",
-      "ts": 1793072154504
+      "ts": 1793073529753
     }
   ],
   "exceptions": [],
@@ -104,37 +104,37 @@
     {
       "level": "warning",
       "source": "rendering",
-      "text": "[.WebGL-0x134000c9000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "text": "[.WebGL-0x13c08ac9000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
       "url": "http://127.0.0.1:4173/#formation",
-      "ts": 1793072148357
+      "ts": 1793073524219
     },
     {
       "level": "error",
       "source": "network",
       "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
       "url": "http://127.0.0.1:4173/favicon.ico",
-      "ts": 1793072148359
+      "ts": 1793073524221
     },
     {
       "level": "warning",
       "source": "rendering",
-      "text": "[.WebGL-0x134000c9000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "text": "[.WebGL-0x13c08ac9000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
       "url": "http://127.0.0.1:4173/#impact",
-      "ts": 1793072149518
+      "ts": 1793073525216
     },
     {
       "level": "warning",
       "source": "rendering",
-      "text": "[.WebGL-0x134000c9000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "text": "[.WebGL-0x13c08ac9000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
       "url": "http://127.0.0.1:4173/#impact",
-      "ts": 1793072149596
+      "ts": 1793073525235
     },
     {
       "level": "warning",
       "source": "rendering",
-      "text": "[.WebGL-0x134000c9000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
+      "text": "[.WebGL-0x13c08ac9000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
       "url": "http://127.0.0.1:4173/#impact",
-      "ts": 1793072149631
+      "ts": 1793073525270
     }
   ],
   "readbacks": {
@@ -142,8 +142,8 @@
       "ok": true,
       "distinctColors": 3281,
       "nonBackgroundRatio": 0.5951041666666667,
-      "sum": 15722123,
-      "hash": 1908151096,
+      "sum": 15716382,
+      "hash": 178492521,
       "pixelCount": 76800,
       "region": {
         "sx": 161,
@@ -157,8 +157,8 @@
         "ok": true,
         "distinctColors": 3281,
         "nonBackgroundRatio": 0.5951041666666667,
-        "sum": 15722123,
-        "hash": 1908151096,
+        "sum": 15716382,
+        "hash": 178492521,
         "pixelCount": 76800,
         "region": {
           "sx": 161,
@@ -171,10 +171,10 @@
     },
     "cutaway": {
       "ok": true,
-      "distinctColors": 3910,
-      "nonBackgroundRatio": 0.8246744791666667,
-      "sum": 14914052,
-      "hash": 776590614,
+      "distinctColors": 3876,
+      "nonBackgroundRatio": 0.87109375,
+      "sum": 14725563,
+      "hash": 83675397,
       "pixelCount": 76800,
       "region": {
         "sx": 161,
@@ -186,10 +186,10 @@
       "source": "screenshot",
       "viaScreenshot": {
         "ok": true,
-        "distinctColors": 3910,
-        "nonBackgroundRatio": 0.8246744791666667,
-        "sum": 14914052,
-        "hash": 776590614,
+        "distinctColors": 3876,
+        "nonBackgroundRatio": 0.87109375,
+        "sum": 14725563,
+        "hash": 83675397,
         "pixelCount": 76800,
         "region": {
           "sx": 161,
@@ -202,10 +202,10 @@
     },
     "restoredFull": {
       "ok": true,
-      "distinctColors": 4029,
-      "nonBackgroundRatio": 0.8246744791666667,
-      "sum": 14873717,
-      "hash": 186865051,
+      "distinctColors": 3933,
+      "nonBackgroundRatio": 0.87109375,
+      "sum": 14698776,
+      "hash": 1633421052,
       "pixelCount": 76800,
       "region": {
         "sx": 161,
@@ -217,10 +217,10 @@
       "source": "screenshot",
       "viaScreenshot": {
         "ok": true,
-        "distinctColors": 4029,
-        "nonBackgroundRatio": 0.8246744791666667,
-        "sum": 14873717,
-        "hash": 186865051,
+        "distinctColors": 3933,
+        "nonBackgroundRatio": 0.87109375,
+        "sum": 14698776,
+        "hash": 1633421052,
         "pixelCount": 76800,
         "region": {
           "sx": 161,
@@ -233,25 +233,20 @@
     },
     "eruption": {
       "ok": true,
-      "distinctColors": 539,
-      "nonBackgroundRatio": 0.12019531250000004,
-      "sum": 7344962,
-      "hash": 424756085,
+      "distinctColors": 2546,
+      "nonBackgroundRatio": 0.5928125,
+      "sum": 15770417,
+      "hash": 1661941488,
       "pixelCount": 76800,
-      "region": {
-        "sx": 161,
-        "sy": 0,
-        "sw": 723,
-        "sh": 622
-      },
-      "scale": 1,
-      "source": "screenshot",
+      "canvasW": 725,
+      "canvasH": 624,
+      "source": "webgl-readback",
       "viaScreenshot": {
         "ok": true,
-        "distinctColors": 539,
-        "nonBackgroundRatio": 0.12019531250000004,
-        "sum": 7344962,
-        "hash": 424756085,
+        "distinctColors": 1,
+        "nonBackgroundRatio": 0,
+        "sum": 3302400,
+        "hash": 746637630,
         "pixelCount": 76800,
         "region": {
           "sx": 161,
@@ -260,6 +255,16 @@
           "sh": 622
         },
         "scale": 1
+      },
+      "viaDirect": {
+        "ok": true,
+        "distinctColors": 2546,
+        "nonBackgroundRatio": 0.5928125,
+        "sum": 15770417,
+        "hash": 1661941488,
+        "pixelCount": 76800,
+        "canvasW": 725,
+        "canvasH": 624
       }
     }
   },
@@ -267,14 +272,15 @@
     "chrome": "Chrome/156.0.8078.48",
     "desktopFormation": "reports/screenshots/desktop-formation.png",
     "desktopImpact": "reports/screenshots/desktop-impact.png",
+    "fps": 45.8,
     "mobileFormation": "reports/screenshots/mobile-formation.png",
     "mobileImpact": "reports/screenshots/mobile-impact.png",
     "fallback": {
       "hasMarker": true,
       "marker": "data-fallback",
-      "chineseChars": 2756,
+      "chineseChars": 2735,
       "svgCount": 10,
-      "textLength": 4940,
+      "textLength": 4915,
       "webgl2": false
     },
     "webglError": "reports/screenshots/webgl-error.png"
@@ -323,12 +329,17 @@
     {
       "name": "切到「剖面」后画面像素发生变化",
       "passed": true,
-      "detail": "画布签名变化=是(sumRel=0.05140, hashRel=0.526924) 整页截图变化=是；空闲漂移(hashRel=0.549547)；通道=screenshot；按钮="
+      "detail": "画布签名变化=是(sumRel=0.06304, hashRel=0.044153) 整页截图变化=是；空闲漂移(hashRel=0.136449)；通道=screenshot；按钮="
+    },
+    {
+      "name": "喷发期间实测帧率（软件渲染档）",
+      "passed": true,
+      "detail": "渲染帧 308 → 363，用时 1200ms，实测 45.8 FPS（headless SwiftShader 软件渲染，非 GPU）"
     },
     {
       "name": "启动喷发后画面像素发生变化",
       "passed": true,
-      "detail": "画布签名变化=是(sumRel=0.50618, hashRel=0.110777) distinctColors 4029→539；通道=screenshot；按钮=喷发进行中"
+      "detail": "画布签名变化=是(sumRel=0.06795, hashRel=0.013281) distinctColors 3933→2546；通道=webgl-readback；按钮=喷发进行中"
     },
     {
       "name": "喷发可暂停/停止",
@@ -363,7 +374,7 @@
     {
       "name": "禁用 WebGL 时出现静态降级内容",
       "passed": true,
-      "detail": "降级标记=有（data-fallback） 中文字数=2756 webgl2可用=false svg=10"
+      "detail": "降级标记=有（data-fallback） 中文字数=2735 webgl2可用=false svg=10"
     }
   ]
 }

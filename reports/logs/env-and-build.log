@@ -1,0 +1,23 @@
+### 环境
+ProductName:		macOS
+ProductVersion:		26.4.1
+BuildVersion:		25E253
+arm64
+v26.0.0
+11.12.1
+Google Chrome 156.0.8078.48 
+
+### 源码提交 SHA
+bd5ace6b2c84c54b834974207bc05d55a1997ccc
+bd5ace6
+
+### npm run build
+dist/assets/index-DNYw-DoE.js   661.43 kB │ gzip: 174.57 kB
+
+✓ built in 111ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+build exit=0

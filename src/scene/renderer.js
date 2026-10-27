@@ -90,9 +90,9 @@ export async function createVolcanoExperience(container, onStatus) {
   // ---- 灯光：克制，不用 bloom，不用过曝橙色 ----
   // 规划案给的 0.7 / 2.1 在 ACES + 深底色下把山体压成全黑（实测不可读），
   // 按「能看清结构」的设计意图提高照度，并加一盏冷环境补光。
-  scene.add(new THREE.AmbientLight(0xffffff, 1.05));
-  scene.add(new THREE.HemisphereLight(0x8fb2c4, 0x241f1b, 0.45));
-  const key = new THREE.DirectionalLight(0xd6e6f2, 2.5);
+  scene.add(new THREE.AmbientLight(palette.lightAmbient, 1.05));
+  scene.add(new THREE.HemisphereLight(palette.lightHemiSky, palette.lightHemiGround, 0.45));
+  const key = new THREE.DirectionalLight(palette.lightKey, 2.5);
   key.position.set(-5, 9, 8);
   key.castShadow = true;
   key.shadow.mapSize.set(1024, 1024);
@@ -106,13 +106,13 @@ export async function createVolcanoExperience(container, onStatus) {
   key.shadow.normalBias = 0.06;
   key.shadow.bias = -0.0004;
   scene.add(key);
-  const fill = new THREE.DirectionalLight(0xfff2e2, 0.6);
+  const fill = new THREE.DirectionalLight(palette.lightFill, 0.6);
   fill.position.set(6, 3, -6);
   scene.add(fill);
 
   // 视角跟随补光：剖面切面正对镜头时，背光的切面会黑成一片，读不出层理。
   // 这盏灯每帧跟随相机位置，保证用户看到的剖面永远有可读的基础照度。
-  const headLight = new THREE.DirectionalLight(0xdfe9f2, 0.95);
+  const headLight = new THREE.DirectionalLight(palette.lightHead, 0.95);
   scene.add(headLight);
   scene.add(headLight.target);
 
@@ -245,6 +245,7 @@ export async function createVolcanoExperience(container, onStatus) {
   };
 
   let clockTime = 0;
+  let frameCount = 0;
   let eruptionClock = 0;
   let needsRender = true;
   let rafId = null;
@@ -337,6 +338,7 @@ export async function createVolcanoExperience(container, onStatus) {
 
     if (camAnimating || sceneAnimating || needsRender) {
       renderer.render(scene, rig.camera);
+      frameCount += 1;
       needsRender = false;
     }
 
@@ -413,6 +415,10 @@ export async function createVolcanoExperience(container, onStatus) {
     dispose,
     invalidate,
     snapshotState: () => ({ ...state }),
+    /** 已渲染帧数 —— 供自动化测试实测 FPS 用 */
+    get frameCount() {
+      return frameCount;
+    },
     /** 供 UI 按钮调用（与 store 动作语义一致）。 */
     rotate: (dir) => rig.rotateBy(dir === 'left' ? ROTATE_SIGN.left * ROTATE_STEP : ROTATE_SIGN.right * ROTATE_STEP),
     pitch: (delta) => rig.rotateBy(0, delta * PITCH_STEP),

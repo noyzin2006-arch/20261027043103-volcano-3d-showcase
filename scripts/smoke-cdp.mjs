@@ -741,6 +741,19 @@ async function runSuite({ distDir, port: preferredPort }) {
     const during = await captureSignature(cdp, sessionId, sigSource);
     readbacks.eruption = during;
     const diffErupt = signatureDiff(beforeEruption, during);
+
+    /* -------------------------- 8b. 实测帧率（喷发进行中，渲染循环持续跑） */
+    const fpsProbe = await evaluate(cdp, sessionId,
+      `(() => { const a = window.__volcano?.frameCount ?? 0; return new Promise((res) => {
+         setTimeout(() => { const b = window.__volcano?.frameCount ?? 0; res({ a, b, ms: 1200 }); }, 1200);
+       }); })()`,
+      { awaitPromise: true });
+    const fps = fpsProbe?.b > fpsProbe?.a
+      ? ((fpsProbe.b - fpsProbe.a) / (fpsProbe.ms / 1000))
+      : 0;
+    checks.record('喷发期间实测帧率（软件渲染档）', fps >= 1,
+      `渲染帧 ${fpsProbe?.a} → ${fpsProbe?.b}，用时 ${fpsProbe?.ms}ms，实测 ${fps.toFixed(1)} FPS（headless SwiftShader 软件渲染，非 GPU）`);
+    artifacts.fps = Number(fps.toFixed(1));
     const eruptState = await evaluate(cdp, sessionId, ERUPTION_STATE_SNIPPET);
     checks.record('启动喷发后画面像素发生变化',
       diffErupt.comparable && diffErupt.changed,
@@ -764,6 +777,9 @@ async function runSuite({ distDir, port: preferredPort }) {
     checks.record('375px 视口无横向滚动',
       scroll375.scrollWidth <= scroll375.clientWidth + 1,
       `scrollWidth=${scroll375.scrollWidth} clientWidth=${scroll375.clientWidth} innerWidth=${scroll375.innerWidth}`);
+    // 先切回形成章，否则这张「mobile-formation」拍到的是影响章
+    await evaluate(cdp, sessionId, clickSnippet(['[data-chapter="formation"]']));
+    await delay(900);
     await screenshot(cdp, sessionId, join(shotDir, 'mobile-formation.png'));
     artifacts.mobileFormation = 'reports/screenshots/mobile-formation.png';
 

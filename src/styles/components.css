@@ -296,8 +296,11 @@
 
 /* ---------------------------------------------------------------- C04 过程步骤 */
 .steps {
+  /* 自适应列数：解说栏在桌面是 8:4 分栏（约 416px 宽），
+     固定 4 列会把「岩层深处具备条件」这类标题压成四行，读不下去。
+     窄时自动落成 2×2，宽时再展开。 */
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
   gap: var(--sp-2);
 }
 
@@ -812,9 +815,6 @@
 
 /* ---------------------------------------------------------------- 响应式 */
 @media (min-width: 768px) {
-  .steps {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
   .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

@@ -135,7 +135,8 @@ export const IMPACT_META = Object.freeze({
 export const HAZARD_KIND_META = Object.freeze({
   pyroclastic: Object.freeze({
     label: '高温碎屑流',
-    body: '炽热快速的密度流沿山坡奔下，温度可达约 700 °C，对所经之处的毁灭性极强。',
+    // 硬数字一律不写在这里：要看的数值在 facts.js 的 d-pdf-speed 里
+    body: '炽热快速的密度流沿山坡奔下，对所经之处的毁灭性极强。',
     factIds: ['d-pdf-speed'],
   }),
   lahar: Object.freeze({

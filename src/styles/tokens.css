@@ -50,6 +50,15 @@
   --scene-plate: #4e8191;
   --scene-water: #3c7f9d;
   --scene-aerosol: #a5c8db;
+  --scene-lava-crust: #2b1a12; /* 熔岩外壳（冷却后的暗壳）*/
+  --scene-lahar: #4a3b2a; /* 火山泥流泥色 */
+  --scene-lahar-pool: #3d3226; /* 坡脚泥水潭 */
+  --scene-light-ambient: #ffffff; /* 环境光 */
+  --scene-light-key: #d6e6f2; /* 主光（冷色）*/
+  --scene-light-fill: #fff2e2; /* 补光（暖色）*/
+  --scene-light-head: #dfe9f2; /* 视角跟随补光 */
+  --scene-light-hemi-sky: #8fb2c4; /* 半球光天空色 */
+  --scene-light-hemi-ground: #241f1b; /* 半球光地面色 */
 
   /* ---------- 圆角 ---------- */
   --radius-1: 4px;

@@ -126,6 +126,9 @@ export function createShell(root) {
   legend.appendChild(h('h3', { class: 'legend__title', text: PAGE_COPY.legendTitle }));
   const legendList = h('ul', { class: 'legend__list' });
   legend.appendChild(legendList);
+  // 说明行只创建一次：每次状态变化都重建图例的话，追加说明会一行行堆起来
+  const legendNote = h('p', { class: 'legend__note', text: '图例为结构示意，比例不代表真实火山高宽与厚度。' });
+  legend.appendChild(legendNote);
 
   // ---------------------------------------------------------------- 面板
   const panel = slots.panel;
@@ -465,9 +468,6 @@ export function createShell(root) {
       li.append(swatch, h('span', { class: 'legend__label', text: label }));
       legendList.appendChild(li);
     }
-    legend.appendChild(
-      h('p', { class: 'legend__note', text: '图例为结构示意，比例不代表真实火山高宽与厚度。' })
-    );
   }
 
   function renderFormation(state) {
