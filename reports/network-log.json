@@ -1,0 +1,369 @@
+{
+  "generatedAt": "2026-10-27T03:36:05.229Z",
+  "chrome": "Chrome/156.0.8078.48",
+  "server": "http://127.0.0.1:4173/",
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document",
+      "status": 200,
+      "error": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4173/assets/index-BqWuu2fg.js",
+      "type": "Script",
+      "status": 200,
+      "error": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4173/assets/index-ldlcUJR5.css",
+      "type": "Stylesheet",
+      "status": 200,
+      "error": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4173/favicon.ico",
+      "type": "Other",
+      "status": 404,
+      "error": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4173/",
+      "type": "Document",
+      "status": 200,
+      "error": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4173/assets/index-BqWuu2fg.js",
+      "type": "Script",
+      "status": 200,
+      "error": null
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4173/assets/index-ldlcUJR5.css",
+      "type": "Stylesheet",
+      "status": 200,
+      "error": null
+    }
+  ],
+  "externalRequests": [],
+  "nonNetworkRequests": [
+    {
+      "method": "GET",
+      "scheme": "data",
+      "urlLength": 216914,
+      "note": "非网络 scheme（data:/blob: 等），未联系任何域名"
+    },
+    {
+      "method": "GET",
+      "scheme": "data",
+      "urlLength": 221178,
+      "note": "非网络 scheme（data:/blob: 等），未联系任何域名"
+    },
+    {
+      "method": "GET",
+      "scheme": "data",
+      "urlLength": 221078,
+      "note": "非网络 scheme（data:/blob: 等），未联系任何域名"
+    },
+    {
+      "method": "GET",
+      "scheme": "data",
+      "urlLength": 284494,
+      "note": "非网络 scheme（data:/blob: 等），未联系任何域名"
+    },
+    {
+      "method": "GET",
+      "scheme": "data",
+      "urlLength": 285222,
+      "note": "非网络 scheme（data:/blob: 等），未联系任何域名"
+    },
+    {
+      "method": "GET",
+      "scheme": "data",
+      "urlLength": 285590,
+      "note": "非网络 scheme（data:/blob: 等），未联系任何域名"
+    }
+  ],
+  "console": [
+    {
+      "type": "warning",
+      "text": "[store] 忽略非法 action \"ERUPTION_TICK\"：dt=\"0\" 非法",
+      "ts": 1793072154504
+    }
+  ],
+  "exceptions": [],
+  "logEntries": [
+    {
+      "level": "warning",
+      "source": "rendering",
+      "text": "[.WebGL-0x134000c9000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "url": "http://127.0.0.1:4173/#formation",
+      "ts": 1793072148357
+    },
+    {
+      "level": "error",
+      "source": "network",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "url": "http://127.0.0.1:4173/favicon.ico",
+      "ts": 1793072148359
+    },
+    {
+      "level": "warning",
+      "source": "rendering",
+      "text": "[.WebGL-0x134000c9000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "url": "http://127.0.0.1:4173/#impact",
+      "ts": 1793072149518
+    },
+    {
+      "level": "warning",
+      "source": "rendering",
+      "text": "[.WebGL-0x134000c9000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels",
+      "url": "http://127.0.0.1:4173/#impact",
+      "ts": 1793072149596
+    },
+    {
+      "level": "warning",
+      "source": "rendering",
+      "text": "[.WebGL-0x134000c9000]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)",
+      "url": "http://127.0.0.1:4173/#impact",
+      "ts": 1793072149631
+    }
+  ],
+  "readbacks": {
+    "full": {
+      "ok": true,
+      "distinctColors": 3281,
+      "nonBackgroundRatio": 0.5951041666666667,
+      "sum": 15722123,
+      "hash": 1908151096,
+      "pixelCount": 76800,
+      "region": {
+        "sx": 161,
+        "sy": 204,
+        "sw": 723,
+        "sh": 622
+      },
+      "scale": 1,
+      "source": "screenshot",
+      "viaScreenshot": {
+        "ok": true,
+        "distinctColors": 3281,
+        "nonBackgroundRatio": 0.5951041666666667,
+        "sum": 15722123,
+        "hash": 1908151096,
+        "pixelCount": 76800,
+        "region": {
+          "sx": 161,
+          "sy": 204,
+          "sw": 723,
+          "sh": 622
+        },
+        "scale": 1
+      }
+    },
+    "cutaway": {
+      "ok": true,
+      "distinctColors": 3910,
+      "nonBackgroundRatio": 0.8246744791666667,
+      "sum": 14914052,
+      "hash": 776590614,
+      "pixelCount": 76800,
+      "region": {
+        "sx": 161,
+        "sy": 0,
+        "sw": 723,
+        "sh": 622
+      },
+      "scale": 1,
+      "source": "screenshot",
+      "viaScreenshot": {
+        "ok": true,
+        "distinctColors": 3910,
+        "nonBackgroundRatio": 0.8246744791666667,
+        "sum": 14914052,
+        "hash": 776590614,
+        "pixelCount": 76800,
+        "region": {
+          "sx": 161,
+          "sy": 0,
+          "sw": 723,
+          "sh": 622
+        },
+        "scale": 1
+      }
+    },
+    "restoredFull": {
+      "ok": true,
+      "distinctColors": 4029,
+      "nonBackgroundRatio": 0.8246744791666667,
+      "sum": 14873717,
+      "hash": 186865051,
+      "pixelCount": 76800,
+      "region": {
+        "sx": 161,
+        "sy": 0,
+        "sw": 723,
+        "sh": 622
+      },
+      "scale": 1,
+      "source": "screenshot",
+      "viaScreenshot": {
+        "ok": true,
+        "distinctColors": 4029,
+        "nonBackgroundRatio": 0.8246744791666667,
+        "sum": 14873717,
+        "hash": 186865051,
+        "pixelCount": 76800,
+        "region": {
+          "sx": 161,
+          "sy": 0,
+          "sw": 723,
+          "sh": 622
+        },
+        "scale": 1
+      }
+    },
+    "eruption": {
+      "ok": true,
+      "distinctColors": 539,
+      "nonBackgroundRatio": 0.12019531250000004,
+      "sum": 7344962,
+      "hash": 424756085,
+      "pixelCount": 76800,
+      "region": {
+        "sx": 161,
+        "sy": 0,
+        "sw": 723,
+        "sh": 622
+      },
+      "scale": 1,
+      "source": "screenshot",
+      "viaScreenshot": {
+        "ok": true,
+        "distinctColors": 539,
+        "nonBackgroundRatio": 0.12019531250000004,
+        "sum": 7344962,
+        "hash": 424756085,
+        "pixelCount": 76800,
+        "region": {
+          "sx": 161,
+          "sy": 0,
+          "sw": 723,
+          "sh": 622
+        },
+        "scale": 1
+      }
+    }
+  },
+  "artifacts": {
+    "chrome": "Chrome/156.0.8078.48",
+    "desktopFormation": "reports/screenshots/desktop-formation.png",
+    "desktopImpact": "reports/screenshots/desktop-impact.png",
+    "mobileFormation": "reports/screenshots/mobile-formation.png",
+    "mobileImpact": "reports/screenshots/mobile-impact.png",
+    "fallback": {
+      "hasMarker": true,
+      "marker": "data-fallback",
+      "chineseChars": 2756,
+      "svgCount": 10,
+      "textLength": 4940,
+      "webgl2": false
+    },
+    "webglError": "reports/screenshots/webgl-error.png"
+  },
+  "checks": [
+    {
+      "name": "静态服务器启动",
+      "passed": true,
+      "detail": "http://127.0.0.1:4173/（根目录 /Users/sheng/Projects/20261027043103-volcano-3d-showcase/dist）"
+    },
+    {
+      "name": "Page.navigate 成功且触发 load 事件",
+      "passed": true,
+      "detail": "url=http://127.0.0.1:4173/"
+    },
+    {
+      "name": "document.title 非空",
+      "passed": true,
+      "detail": "title=\"火山｜地球内部的力量 — 3D 交互科学图鉴\""
+    },
+    {
+      "name": "页面存在 canvas",
+      "passed": true,
+      "detail": "canvas 数量=1"
+    },
+    {
+      "name": "章节按钮存在且可达（2 个）",
+      "passed": true,
+      "detail": "button[data-chapter]=2（另有 4 个 [data-chapter] 作用域标记）"
+    },
+    {
+      "name": "WebGL 上下文可用",
+      "passed": true,
+      "detail": "canvas=725x624 类型=webgl2"
+    },
+    {
+      "name": "画布像素非纯色（真实 3D 渲染）",
+      "passed": true,
+      "detail": "distinctColors=3305 nonBackgroundRatio=0.629 读取通道=screenshot"
+    },
+    {
+      "name": "可点击「影响」章节按钮",
+      "passed": true,
+      "detail": "按钮文案=\"02 喷发如何影响世界\""
+    },
+    {
+      "name": "切到「剖面」后画面像素发生变化",
+      "passed": true,
+      "detail": "画布签名变化=是(sumRel=0.05140, hashRel=0.526924) 整页截图变化=是；空闲漂移(hashRel=0.549547)；通道=screenshot；按钮="
+    },
+    {
+      "name": "启动喷发后画面像素发生变化",
+      "passed": true,
+      "detail": "画布签名变化=是(sumRel=0.50618, hashRel=0.110777) distinctColors 4029→539；通道=screenshot；按钮=喷发进行中"
+    },
+    {
+      "name": "喷发可暂停/停止",
+      "passed": true,
+      "detail": "按钮=\"暂停\""
+    },
+    {
+      "name": "375px 视口无横向滚动",
+      "passed": true,
+      "detail": "scrollWidth=375 clientWidth=375 innerWidth=375"
+    },
+    {
+      "name": "1440px 视口无横向滚动",
+      "passed": true,
+      "detail": "scrollWidth=1440 clientWidth=1440 innerWidth=1440"
+    },
+    {
+      "name": "减弱动效（reduce）下喷发不自动开始",
+      "passed": true,
+      "detail": "running=false 专用状态标记=有 状态条=\"3D 已就绪，可拖动旋转。\""
+    },
+    {
+      "name": "运行期外部域名请求数为 0",
+      "passed": true,
+      "detail": "共 13 个请求，全部指向本地静态服务器"
+    },
+    {
+      "name": "控制台错误数为 0",
+      "passed": true,
+      "detail": "console error=0，未捕获异常=0（日志条目 5 条）"
+    },
+    {
+      "name": "禁用 WebGL 时出现静态降级内容",
+      "passed": true,
+      "detail": "降级标记=有（data-fallback） 中文字数=2756 webgl2可用=false svg=10"
+    }
+  ]
+}

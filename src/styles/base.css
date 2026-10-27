@@ -211,7 +211,8 @@ canvas {
 }
 
 .site-header__title {
-  max-width: 16ch;
+  /* 中文按 em 限宽（16 汉字）；ch 基准是数字宽度，会让中文标题提前换行 */
+  max-width: 16em;
 }
 
 /* 主区：舞台 + 解说栏 */
@@ -292,7 +293,7 @@ canvas {
   }
   .site-header__title {
     font-size: var(--fz-4);
-    max-width: 14ch;
+    max-width: 14em;
   }
 }
 
@@ -321,7 +322,7 @@ canvas {
   }
   .site-header__title {
     font-size: var(--fz-4);
-    max-width: 12ch;
+    max-width: 12em;
   }
   .panel {
     max-width: none;

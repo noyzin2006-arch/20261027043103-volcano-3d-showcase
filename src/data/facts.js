@@ -686,6 +686,67 @@ export const VEI_ROWS = Object.freeze(
   ].map(Object.freeze)
 );
 
+/**
+ * VEI 等级 → 代表事实 id 的映射（视图层据此把每一档挂到可展开的证据上）。
+ * 编号 0–8 与 VEI_ROWS 一一对应。
+ */
+export const VEI_FACT_IDS = Object.freeze({
+  0: ['c-vei-limits', 'g-lap-2021'],
+  1: ['c-vei-log'],
+  2: ['c-vei-frequency'],
+  3: ['c-vei-limits', 'g-lahar-armero'],
+  4: ['c-vei-overlap', 'f-eyjafjallajokull-2010'],
+  5: ['c-vei-log', 'g-vesuvius-79'],
+  6: ['c-vei-overlap', 'e-pinatubo-column', 'e-pinatubo-so2', 'e-pinatubo-cooling', 'e-pinatubo-aircraft'],
+  7: ['e-tambora', 'e-samalas'],
+  8: ['b-lip', 'b-tamu'],
+});
+
+/**
+ * 来源页面固定列表（规划案 §4.5「来源页面固定列」）。
+ * 外部链接只在用户点击时才导航；页面运行时不请求这些地址。
+ */
+export const SOURCES = Object.freeze(
+  [
+    {
+      id: 'brief',
+      label: '本项目策展简报 TASK-001 §A—G',
+      url: null,
+      note: '本页全部硬数值的直接出处，2026-10-27 复核。',
+    },
+    {
+      id: 'usgs-types',
+      label: 'USGS Principal Types of Volcanoes',
+      url: URL.usgsTypes,
+      note: '火山形态分类与三类山形的官方图鉴。',
+    },
+    {
+      id: 'usgs-vhp',
+      label: 'USGS Volcano Hazards Program',
+      url: URL.usgsVhp,
+      note: '活火山定义与 VEI 量表的机构说明。',
+    },
+    {
+      id: 'nasa-tonga',
+      label: 'NASA AURA：汤加水下火山喷发观测',
+      url: URL.nasaTonga,
+      note: '汤加 2022 年喷发的水蒸气与二氧化硫观测。',
+    },
+    {
+      id: 'nasa-aerosol',
+      label: 'NASA My NASA Data：Volcanic Eruptions',
+      url: URL.nasaAerosol,
+      note: '火山气溶胶与短期降温机制的教学专题。',
+    },
+    {
+      id: 'lava-centre',
+      label: 'LAVA Centre（冰岛）',
+      url: URL.lavaCentre,
+      note: '洋中脊成因与冰岛火山演化的展馆资料。',
+    },
+  ].map(Object.freeze)
+);
+
 /** 按 id 取事实；找不到返回 null（界面按「无对应事实」处理，不抛错）。 */
 export function getFact(id) {
   return FACTS.find((f) => f.id === id) ?? null;

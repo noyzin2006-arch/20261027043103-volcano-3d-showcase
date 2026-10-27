@@ -1,0 +1,901 @@
+/* ==========================================================================
+   组件层 —— C01—C11
+   依据：handoff/plans/TASK-001.md §3.2 组件规格表 + §3.1 断点规则
+   规则：
+     1. 全部颜色、间距、圆角、阴影只引用 tokens.css 的变量。
+     2. 通用组件状态约定 S：默认 / 悬停 / 按下 / 聚焦 / 禁用 / 加载 / 错误 / 空 / 成功。
+     3. 动画只用 transform 与 opacity；不逐帧改 width / height / top / left。
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- C01 顶部与章节切换 */
+.site-header {
+  position: relative;
+  z-index: var(--z-nav);
+}
+
+.chapter-nav {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.chapter-nav__btn {
+  min-height: 48px;
+  padding: var(--sp-3) var(--sp-4);
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-2);
+  background: var(--bg-1);
+  color: var(--text-2);
+  font-size: var(--fz-1);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.02em;
+  transition: background-color var(--d-normal) var(--ease-work),
+    border-color var(--d-normal) var(--ease-work), color var(--d-normal) var(--ease-work),
+    transform var(--d-fast) var(--ease-work);
+}
+
+@media (hover: hover) {
+  .chapter-nav__btn:hover {
+    border-color: var(--line-2);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-1);
+  }
+}
+
+.chapter-nav__btn:active {
+  background: var(--bg-3);
+  transform: translateY(0) scale(0.985);
+}
+
+.chapter-nav__btn.is-active {
+  border-bottom: var(--border-strong) solid var(--accent);
+  color: var(--text-1);
+  background: var(--bg-2);
+}
+
+.chapter-nav__btn[aria-current="page"] {
+  color: var(--accent-pale);
+}
+
+/* ---------------------------------------------------------------- C02 3D 展台 */
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  min-width: 0;
+  margin: 0;
+}
+
+.stage__status {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  padding: var(--sp-2) var(--sp-3);
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-2);
+  background: var(--bg-2);
+  font-size: var(--fz-1);
+  color: var(--text-2);
+}
+
+.stage__status[data-state="error"] {
+  border-color: var(--danger);
+}
+
+.stage__status[data-state="ready"] {
+  border-color: var(--line-2);
+}
+
+.stage__canvas-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 360px;
+  aspect-ratio: 4 / 5;
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-4);
+  background: var(--bg-0);
+  overflow: hidden;
+}
+
+.stage__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none; /* 画布内拖动不滚页面；画布外始终可纵向滚动 */
+}
+
+.stage__caption {
+  color: var(--text-3);
+  font-size: var(--fz-0);
+  letter-spacing: 0.06em;
+  line-height: var(--sp-4);
+}
+
+/* ---------------------------------------------------------------- C03 视角工具组 */
+.stage__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  padding: var(--sp-2);
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-2);
+  background: var(--bg-2);
+}
+
+.icon-btn {
+  width: var(--tap-min);
+  height: var(--tap-min);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-thin) solid transparent;
+  border-radius: var(--radius-2);
+  background: transparent;
+  color: var(--text-2);
+  transition: background-color var(--d-fast) var(--ease-work),
+    border-color var(--d-fast) var(--ease-work), color var(--d-fast) var(--ease-work),
+    transform var(--d-fast) var(--ease-work);
+}
+
+@media (hover: hover) {
+  .icon-btn:hover {
+    background: var(--bg-3);
+    border-color: var(--line-1);
+    color: var(--text-1);
+    transform: translateY(-1px);
+  }
+}
+
+.icon-btn:active {
+  transform: scale(0.94);
+  background: var(--bg-3);
+}
+
+.icon-btn.is-active {
+  border-color: var(--accent-press);
+  color: var(--accent-pale);
+  background: var(--bg-3);
+}
+
+.icon-btn[aria-disabled="true"] {
+  color: var(--disabled);
+  opacity: 0.68;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------- C11 图例 */
+.stage__legend {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-3);
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-2);
+  background: var(--bg-1);
+}
+
+.legend__title {
+  font-size: var(--fz-0);
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
+.legend__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+
+.legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fz-1);
+  color: var(--text-2);
+}
+
+.legend__swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: var(--border-thin) solid var(--line-1);
+  flex: none;
+}
+
+.legend__note {
+  font-size: var(--fz-0);
+  color: var(--text-3);
+}
+
+/* ---------------------------------------------------------------- 通用卡片与区块 */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+  padding: var(--sp-6);
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-3);
+  background: var(--bg-1);
+  min-width: 0;
+}
+
+.card__title {
+  font-size: var(--fz-3);
+  font-weight: var(--fw-semi);
+}
+
+.card__lead {
+  color: var(--text-3);
+  font-size: var(--fz-1);
+  margin-top: calc(var(--sp-2) * -1);
+}
+
+.card__note {
+  font-size: var(--fz-0);
+  color: var(--text-3);
+  line-height: var(--sp-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.field__label {
+  font-size: var(--fz-1);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.02em;
+  color: var(--text-3);
+}
+
+/* ---------------------------------------------------------------- C05 分段控件 */
+.segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.segmented__btn {
+  flex: 1 1 auto;
+  min-height: var(--tap-min);
+  padding: var(--sp-2) var(--sp-3);
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-2);
+  background: var(--bg-2);
+  color: var(--text-2);
+  font-size: var(--fz-1);
+  line-height: var(--lh-control);
+  text-align: left;
+  transition: background-color var(--d-fast) var(--ease-work),
+    border-color var(--d-fast) var(--ease-work), color var(--d-fast) var(--ease-work),
+    transform var(--d-fast) var(--ease-work);
+}
+
+@media (hover: hover) {
+  .segmented__btn:hover {
+    border-color: var(--line-2);
+    color: var(--text-1);
+    transform: translateY(-1px);
+  }
+}
+
+.segmented__btn:active {
+  transform: scale(0.985);
+  background: var(--bg-3);
+}
+
+.segmented__btn.is-active {
+  border-color: var(--accent-press);
+  border-width: var(--border-strong);
+  color: var(--accent-pale);
+  background: var(--bg-3);
+}
+
+/* ---------------------------------------------------------------- C04 过程步骤 */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-2);
+}
+
+.step-btn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  align-items: flex-start;
+  min-height: 52px;
+  padding: var(--sp-3);
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-2);
+  background: var(--bg-2);
+  color: var(--text-2);
+  text-align: left;
+  transition: background-color var(--d-fast) var(--ease-work),
+    border-color var(--d-fast) var(--ease-work), transform var(--d-fast) var(--ease-work);
+}
+
+@media (hover: hover) {
+  .step-btn:hover {
+    border-color: var(--line-2);
+    transform: translateY(-1px);
+  }
+}
+
+.step-btn:active {
+  transform: scale(0.985);
+  background: var(--bg-3);
+}
+
+.step-btn.is-active {
+  border-color: var(--accent-press);
+  border-width: var(--border-strong);
+  background: var(--bg-3);
+}
+
+.step-btn__index {
+  font-size: var(--fz-1);
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+}
+
+.step-btn__title {
+  font-size: var(--fz-2);
+  line-height: var(--lh-control);
+}
+
+.step-btn.is-active .step-btn__index {
+  color: var(--accent-pale);
+}
+
+/* ---------------------------------------------------------------- C06 影响场景卡 */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+}
+
+.impact-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  min-height: 88px;
+  padding: var(--sp-4);
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-3);
+  background: var(--bg-2);
+  color: var(--text-2);
+  text-align: left;
+  transition: background-color var(--d-fast) var(--ease-work),
+    border-color var(--d-fast) var(--ease-work), transform var(--d-fast) var(--ease-work);
+}
+
+@media (hover: hover) {
+  .impact-card:hover {
+    border-color: var(--line-2);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-1);
+  }
+}
+
+.impact-card:active {
+  transform: scale(0.985);
+  background: var(--bg-3);
+}
+
+.impact-card.is-active {
+  border-color: var(--accent-press);
+  border-width: var(--border-strong);
+  background: var(--bg-3);
+}
+
+.impact-card__title {
+  font-size: var(--fz-3);
+  font-weight: var(--fw-semi);
+  color: var(--text-1);
+  line-height: var(--lh-control);
+}
+
+.impact-card.is-active .impact-card__title {
+  color: var(--accent-pale);
+}
+
+.impact-card__summary {
+  font-size: var(--fz-1);
+  color: var(--text-3);
+  line-height: var(--lh-control);
+}
+
+/* ---------------------------------------------------------------- C07 喷发控制 */
+.eruption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-3);
+  background: var(--bg-2);
+}
+
+.eruption__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.btn {
+  min-height: 48px;
+  padding: var(--sp-3) var(--sp-4);
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-2);
+  background: var(--bg-1);
+  color: var(--text-1);
+  font-size: var(--fz-1);
+  font-weight: var(--fw-medium);
+  transition: background-color var(--d-fast) var(--ease-work),
+    border-color var(--d-fast) var(--ease-work), transform var(--d-fast) var(--ease-work);
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    border-color: var(--line-2);
+    transform: translateY(-1px);
+  }
+}
+
+.btn:active {
+  transform: scale(0.985);
+}
+
+.btn--primary {
+  min-width: 152px;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-inverse);
+  font-weight: var(--fw-semi);
+}
+
+@media (hover: hover) {
+  .btn--primary:hover {
+    background: var(--accent-press);
+    border-color: var(--accent-press);
+  }
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-2);
+}
+
+.btn[aria-disabled="true"] {
+  color: var(--disabled);
+  opacity: 0.68;
+  pointer-events: none;
+}
+
+.eruption__progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.progress {
+  position: relative;
+  flex: 1;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-3);
+  overflow: hidden;
+}
+
+.progress__fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: var(--accent);
+  transition: transform var(--d-normal) linear;
+}
+
+.progress__text {
+  flex: none;
+  font-size: var(--fz-1);
+  color: var(--text-3);
+}
+
+.eruption__note {
+  font-size: var(--fz-1);
+  color: var(--text-3);
+}
+
+/* ---------------------------------------------------------------- 解释区 */
+.explain {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-3);
+  background: var(--bg-2);
+}
+
+.explain__question {
+  font-size: var(--fz-3);
+  font-weight: var(--fw-semi);
+  color: var(--text-1);
+  line-height: var(--lh-control);
+}
+
+.explain__body {
+  font-size: var(--fz-2);
+  line-height: var(--lh-body);
+  color: var(--text-2);
+  max-width: 36ch;
+}
+
+.explain__facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.explain__fact {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.explain__fact-value {
+  font-size: var(--fz-5);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.02em;
+  color: var(--accent-pale);
+  line-height: 1.1;
+}
+
+.explain__fact-title {
+  font-size: var(--fz-1);
+  color: var(--text-3);
+}
+
+.explain__source {
+  font-size: var(--fz-0);
+  color: var(--text-3);
+  letter-spacing: 0.02em;
+}
+
+/* ---------------------------------------------------------------- 四态提示条 */
+.state-line {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fz-1);
+  line-height: var(--lh-control);
+}
+
+.state-line--inline {
+  color: inherit;
+}
+
+.state-line--info {
+  color: var(--info);
+}
+.state-line--success {
+  color: var(--success);
+}
+.state-line--warning {
+  color: var(--warning);
+}
+.state-line--danger {
+  color: var(--danger);
+}
+
+/* ---------------------------------------------------------------- C08 VEI 与事实卡 */
+.vei {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.vei__item {
+  border: var(--border-thin) solid var(--line-1);
+  border-radius: var(--radius-3);
+  background: var(--bg-2);
+  overflow: hidden;
+}
+
+.vei__row {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap: var(--sp-3);
+  align-items: center;
+  width: 100%;
+  min-height: 56px;
+  padding: var(--sp-3) var(--sp-4);
+  color: var(--text-2);
+  text-align: left;
+  transition: background-color var(--d-fast) var(--ease-work);
+}
+
+@media (hover: hover) {
+  .vei__row:hover {
+    background: var(--bg-3);
+  }
+}
+
+.vei__row:active {
+  background: var(--bg-3);
+}
+
+.vei__level {
+  font-size: var(--fz-2);
+  font-weight: var(--fw-bold);
+  color: var(--accent-pale);
+}
+
+.vei__metric,
+.vei__event {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: var(--fz-1);
+  color: var(--text-2);
+  min-width: 0;
+}
+
+.vei__metric::before,
+.vei__event::before {
+  content: attr(data-label);
+  font-size: var(--fz-0);
+  color: var(--text-3);
+  letter-spacing: 0.04em;
+}
+
+.vei__metric-value {
+  font-size: var(--fz-2);
+}
+
+.vei__detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border-top: var(--border-thin) solid var(--line-1);
+  background: var(--bg-1);
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  padding-left: var(--sp-3);
+  border-left: var(--border-strong) solid var(--line-1);
+}
+
+.fact__value {
+  font-size: var(--fz-3);
+  font-weight: var(--fw-bold);
+  color: var(--accent-pale);
+  line-height: 1.2;
+}
+
+.fact__title {
+  font-size: var(--fz-1);
+  font-weight: var(--fw-semi);
+  color: var(--text-1);
+}
+
+.fact__explanation {
+  font-size: var(--fz-1);
+  color: var(--text-2);
+  line-height: var(--lh-body);
+}
+
+.fact__caveat {
+  font-size: var(--fz-0);
+  color: var(--text-3);
+  line-height: var(--sp-4);
+}
+
+.fact__source {
+  font-size: var(--fz-0);
+  color: var(--text-3);
+}
+
+/* ---------------------------------------------------------------- C09 来源列表 */
+.sources {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.sources__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.sources__link {
+  font-size: var(--fz-1);
+  font-weight: var(--fw-medium);
+  overflow-wrap: anywhere;
+}
+
+.sources__link--plain {
+  color: var(--text-1);
+}
+
+.sources__note {
+  font-size: var(--fz-0);
+  color: var(--text-3);
+  line-height: var(--sp-4);
+}
+
+/* ---------------------------------------------------------------- 静态降级剖面 */
+.fallback {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-4);
+  border: var(--border-thin) solid var(--danger);
+  border-radius: var(--radius-4);
+  background: var(--bg-1);
+}
+
+.fallback__head {
+  font-size: var(--fz-1);
+  color: var(--text-1);
+  font-weight: var(--fw-medium);
+}
+
+.fallback__reason {
+  font-size: var(--fz-0);
+  color: var(--danger);
+}
+
+.fallback__figure {
+  background: var(--bg-0);
+  border-radius: var(--radius-2);
+  padding: var(--sp-3);
+}
+
+.fallback__note {
+  font-size: var(--fz-0);
+  color: var(--text-3);
+}
+
+.fallback-svg {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+}
+
+.fallback-svg__ground {
+  fill: var(--scene-rock);
+  stroke: var(--line-2);
+  stroke-width: 0.04;
+}
+
+.fallback-svg__layer {
+  stroke: var(--scene-strata);
+  stroke-width: 0.05;
+  stroke-dasharray: 0.16 0.1;
+}
+
+.fallback-svg__chamber {
+  fill: var(--scene-magma);
+  opacity: 0.85;
+}
+
+.fallback-svg__conduit {
+  fill: none;
+  stroke: var(--scene-magma);
+  stroke-width: 0.16;
+  stroke-linecap: round;
+}
+
+.fallback-svg__crater {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 0.05;
+}
+
+.fallback-svg__label {
+  fill: var(--text-2);
+  font-size: 0.3px;
+  font-family: var(--font-body);
+}
+
+/* ---------------------------------------------------------------- 响应式 */
+@media (min-width: 768px) {
+  .steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .stage__canvas-wrap {
+    aspect-ratio: 16 / 10;
+  }
+  .vei__row {
+    grid-template-columns: 90px 1fr 1fr 1.4fr;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .stage__canvas-wrap {
+    aspect-ratio: 5 / 4;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stage__canvas-wrap {
+    aspect-ratio: auto;
+    height: min(70vh, 680px);
+    min-height: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .stage__canvas-wrap {
+    height: var(--stage-h);
+  }
+}
+
+/* ≤479：移动端 —— 表格转纵向卡片，按钮两行 */
+@media (max-width: 479px) {
+  .chapter-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .chapter-nav__btn {
+    min-height: var(--tap-min);
+    text-align: center;
+  }
+  .stage__canvas-wrap {
+    min-height: 360px;
+  }
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .cards {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    padding: var(--sp-4);
+  }
+  .eruption__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .btn--primary {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+  /* VEI 表 → 纵向卡片 */
+  .vei__row {
+    grid-template-columns: 1fr;
+    gap: var(--sp-2);
+    align-items: flex-start;
+  }
+  .vei__level {
+    font-size: var(--fz-3);
+  }
+  .explain__body {
+    max-width: none;
+  }
+  .stage__toolbar {
+    justify-content: flex-start;
+  }
+}
+
+/* 动效减弱：不依赖 CSS 动画做状态反馈 */
+@media (prefers-reduced-motion: reduce) {
+  .progress__fill {
+    transition: none;
+  }
+}
