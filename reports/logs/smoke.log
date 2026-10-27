@@ -3,7 +3,7 @@
 > node scripts/smoke-cdp.mjs
 
 ✅ PASS  静态服务器启动 —— http://127.0.0.1:4173/（根目录 /Users/sheng/Projects/20261027043103-volcano-3d-showcase/dist）
-ℹ️ Chrome：Chrome/156.0.8078.48（调试端口 53631）
+ℹ️ Chrome：Chrome/156.0.8078.48（调试端口 58302）
 ✅ PASS  Page.navigate 成功且触发 load 事件 —— url=http://127.0.0.1:4173/
 ✅ PASS  document.title 非空 —— title="火山｜地球内部的力量 — 3D 交互科学图鉴"
 ✅ PASS  页面存在 canvas —— canvas 数量=1
@@ -11,12 +11,15 @@
 ✅ PASS  WebGL 上下文可用 —— canvas=725x624 类型=webgl2
 ✅ PASS  画布像素非纯色（真实 3D 渲染） —— distinctColors=3305 nonBackgroundRatio=0.629 读取通道=screenshot
 ✅ PASS  可点击「影响」章节按钮 —— 按钮文案="02 喷发如何影响世界"
-✅ PASS  切到「剖面」后画面像素发生变化 —— 画布签名变化=是(sumRel=0.06304, hashRel=0.044153) 整页截图变化=是；空闲漂移(hashRel=0.136449)；通道=screenshot；按钮=
-✅ PASS  喷发期间实测帧率（软件渲染档） —— 渲染帧 308 → 363，用时 1200ms，实测 45.8 FPS（headless SwiftShader 软件渲染，非 GPU）
-✅ PASS  启动喷发后画面像素发生变化 —— 画布签名变化=是(sumRel=0.06795, hashRel=0.013281) distinctColors 3933→2546；通道=webgl-readback；按钮=喷发进行中
+✅ PASS  切到「剖面」后画面像素发生变化 —— 画布签名变化=是(sumRel=0.06309, hashRel=0.190588) 整页截图变化=是；空闲漂移(hashRel=0.071582)；通道=screenshot；按钮=
+✅ PASS  喷发期间实测帧率（软件渲染档） —— 渲染帧 310 → 370，用时 1200ms，实测 50.0 FPS（headless SwiftShader 软件渲染，非 GPU）
+✅ PASS  启动喷发后画面像素发生变化 —— 画布签名变化=是(sumRel=0.06785, hashRel=0.009865) distinctColors 3921→2566；通道=webgl-readback；按钮=喷发进行中
 ✅ PASS  喷发可暂停/停止 —— 按钮="暂停"
 ✅ PASS  375px 视口无横向滚动 —— scrollWidth=375 clientWidth=375 innerWidth=375
 ✅ PASS  1440px 视口无横向滚动 —— scrollWidth=1440 clientWidth=1440 innerWidth=1440
+✅ PASS  火山渣锥形态可切换并出图 —— cinder-cone.png 已保存（217172 字节）
+✅ PASS  VEI 行可展开并显示对应事实 —— aria-expanded=true 详情可见=true
+✅ PASS  键盘焦点环可见（≥2px 实线） —— 聚焦=true outline=2px solid
 ✅ PASS  减弱动效（reduce）下喷发不自动开始 —— running=false 专用状态标记=有 状态条="3D 已就绪，可拖动旋转。"
 ✅ PASS  运行期外部域名请求数为 0 —— 共 13 个请求，全部指向本地静态服务器
 ✅ PASS  控制台错误数为 0 —— console error=0，未捕获异常=0（日志条目 5 条）
@@ -31,16 +34,19 @@
 ✅ WebGL 上下文可用 —— canvas=725x624 类型=webgl2
 ✅ 画布像素非纯色（真实 3D 渲染） —— distinctColors=3305 nonBackgroundRatio=0.629 读取通道=screenshot
 ✅ 可点击「影响」章节按钮 —— 按钮文案="02 喷发如何影响世界"
-✅ 切到「剖面」后画面像素发生变化 —— 画布签名变化=是(sumRel=0.06304, hashRel=0.044153) 整页截图变化=是；空闲漂移(hashRel=0.136449)；通道=screenshot；按钮=
-✅ 喷发期间实测帧率（软件渲染档） —— 渲染帧 308 → 363，用时 1200ms，实测 45.8 FPS（headless SwiftShader 软件渲染，非 GPU）
-✅ 启动喷发后画面像素发生变化 —— 画布签名变化=是(sumRel=0.06795, hashRel=0.013281) distinctColors 3933→2546；通道=webgl-readback；按钮=喷发进行中
+✅ 切到「剖面」后画面像素发生变化 —— 画布签名变化=是(sumRel=0.06309, hashRel=0.190588) 整页截图变化=是；空闲漂移(hashRel=0.071582)；通道=screenshot；按钮=
+✅ 喷发期间实测帧率（软件渲染档） —— 渲染帧 310 → 370，用时 1200ms，实测 50.0 FPS（headless SwiftShader 软件渲染，非 GPU）
+✅ 启动喷发后画面像素发生变化 —— 画布签名变化=是(sumRel=0.06785, hashRel=0.009865) distinctColors 3921→2566；通道=webgl-readback；按钮=喷发进行中
 ✅ 喷发可暂停/停止 —— 按钮="暂停"
 ✅ 375px 视口无横向滚动 —— scrollWidth=375 clientWidth=375 innerWidth=375
 ✅ 1440px 视口无横向滚动 —— scrollWidth=1440 clientWidth=1440 innerWidth=1440
+✅ 火山渣锥形态可切换并出图 —— cinder-cone.png 已保存（217172 字节）
+✅ VEI 行可展开并显示对应事实 —— aria-expanded=true 详情可见=true
+✅ 键盘焦点环可见（≥2px 实线） —— 聚焦=true outline=2px solid
 ✅ 减弱动效（reduce）下喷发不自动开始 —— running=false 专用状态标记=有 状态条="3D 已就绪，可拖动旋转。"
 ✅ 运行期外部域名请求数为 0 —— 共 13 个请求，全部指向本地静态服务器
 ✅ 控制台错误数为 0 —— console error=0，未捕获异常=0（日志条目 5 条）
 ✅ 禁用 WebGL 时出现静态降级内容 —— 降级标记=有（data-fallback） 中文字数=2735 webgl2可用=false svg=10
 ─────────────────────────
-共 18 项检查，通过 18 项，失败 0 项。
-产物：reports/screenshots/desktop-formation.png、reports/screenshots/desktop-impact.png、reports/screenshots/mobile-formation.png、reports/screenshots/mobile-impact.png、reports/screenshots/webgl-error.png、reports/network-log.json
+共 21 项检查，通过 21 项，失败 0 项。
+产物：reports/screenshots/desktop-formation.png、reports/screenshots/desktop-impact.png、reports/screenshots/mobile-formation.png、reports/screenshots/mobile-impact.png、reports/screenshots/cinder-cone.png、reports/screenshots/veitable-expanded.png、reports/screenshots/focus-visible.png、reports/screenshots/webgl-error.png、reports/network-log.json

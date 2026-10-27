@@ -14,6 +14,7 @@ import {
   buildVolcanoGeometry,
   buildBaseBlockGeometry,
   buildCraterFloorGeometry,
+  buildCinderDebris,
   readScenePalette,
   DEFAULT_SEED,
   GROUND_RADIUS,
@@ -143,6 +144,7 @@ export async function createVolcanoExperience(container, onStatus) {
 
   let volcanoMesh = null;
   let craterFloor = null;
+  let cinderDebris = null;
   let crossSection = null;
   let currentGrowth = 1;
 
@@ -181,6 +183,18 @@ export async function createVolcanoExperience(container, onStatus) {
     craterFloor = new THREE.Mesh(buildCraterFloorGeometry(kind, DEFAULT_SEED, growth), craterMat);
     craterFloor.name = 'crater-floor';
     volcanoGroup.add(craterFloor);
+
+    // 火山渣锥坡面的渣粒：只属于渣锥，换类型时重建
+    if (cinderDebris) {
+      cinderDebris.geometry.dispose();
+      cinderDebris.material.dispose();
+      volcanoGroup.remove(cinderDebris);
+      cinderDebris = null;
+    }
+    if (kind === 'cinder') {
+      cinderDebris = buildCinderDebris({ kind, seed: DEFAULT_SEED, count: 220 });
+      volcanoGroup.add(cinderDebris);
+    }
   }
 
   /** 重建剖面组（增长阶段变化时同步更新切面）。 */

@@ -797,6 +797,48 @@ async function runSuite({ distDir, port: preferredPort }) {
     checks.record('1440px 视口无横向滚动',
       scroll1440.scrollWidth <= scroll1440.clientWidth + 1,
       `scrollWidth=${scroll1440.scrollWidth} clientWidth=${scroll1440.clientWidth} innerWidth=${scroll1440.innerWidth}`);
+    /* ------------------------- 9b. 补齐规划案 §9.3 要求的其余证据截图 */
+    // (a) 火山渣锥：坡面应有 InstancedMesh 渣粒
+    // 先回到页面顶部并滚到画布，保证截图里是 3D 展台而不是解说栏
+    await evaluate(cdp, sessionId, `(() => { window.scrollTo(0, 0);
+      document.querySelector('.stage__canvas-wrap')?.scrollIntoView({ block: 'center' }); return true; })()`);
+    await delay(400);
+    await evaluate(cdp, sessionId, clickSnippet(['[data-chapter="formation"]']));
+    await delay(700);
+    await evaluate(cdp, sessionId, clickSnippet(['[data-volcano="cinder"]']));
+    await delay(1200);
+    const cinderShot = await screenshot(cdp, sessionId, join(shotDir, 'cinder-cone.png'));
+    artifacts.cinderCone = 'reports/screenshots/cinder-cone.png';
+    checks.record('火山渣锥形态可切换并出图', cinderShot?.bytes > 0,
+      `cinder-cone.png 已保存（${cinderShot?.bytes ?? 0} 字节）`);
+
+    // (b) VEI 表展开态：展开 VEI 6（皮纳图博 1991）
+    await evaluate(cdp, sessionId, clickSnippet(['[data-vei="6"]']));
+    await delay(600);
+    const veiExpanded = await evaluate(cdp, sessionId,
+      `(() => { const b = document.querySelector('[data-vei="6"]');
+        return { expanded: b?.getAttribute('aria-expanded') ?? null,
+                 detailVisible: !document.querySelector('#vei-detail-6')?.hidden }; })()`);
+    checks.record('VEI 行可展开并显示对应事实', veiExpanded?.expanded === 'true' && veiExpanded?.detailVisible === true,
+      `aria-expanded=${veiExpanded?.expanded} 详情可见=${veiExpanded?.detailVisible}`);
+    await screenshot(cdp, sessionId, join(shotDir, 'veitable-expanded.png'));
+    artifacts.veiTableExpanded = 'reports/screenshots/veitable-expanded.png';
+
+    // (c) 焦点可见态：聚焦章节按钮后截图
+    await evaluate(cdp, sessionId,
+      `(() => { const b = document.querySelector('button[data-chapter="formation"]'); b?.focus(); return !!b; })()`);
+    await delay(400);
+    const focusRing = await evaluate(cdp, sessionId,
+      `(() => { const b = document.querySelector('button[data-chapter="formation"]');
+        if (!b) return null;
+        const cs = getComputedStyle(b);
+        return { active: document.activeElement === b, outlineWidth: cs.outlineWidth, outlineStyle: cs.outlineStyle }; })()`);
+    checks.record('键盘焦点环可见（≥2px 实线）',
+      focusRing?.active === true && parseFloat(focusRing?.outlineWidth ?? '0') >= 2 && focusRing?.outlineStyle !== 'none',
+      `聚焦=${focusRing?.active} outline=${focusRing?.outlineWidth} ${focusRing?.outlineStyle}`);
+    await screenshot(cdp, sessionId, join(shotDir, 'focus-visible.png'));
+    artifacts.focusVisible = 'reports/screenshots/focus-visible.png';
+
 
     /* ------------------------------------------- 11. 减弱动效不自动播 */
     await cdp.send('Emulation.setEmulatedMedia', {

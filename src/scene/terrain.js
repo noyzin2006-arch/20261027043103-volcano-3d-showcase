@@ -401,3 +401,60 @@ export function buildCraterFloorGeometry(kind = 'strato', seed = DEFAULT_SEED, g
   geo.computeVertexNormals();
   return geo;
 }
+
+/**
+ * 火山渣锥坡面的火山渣粒（规划案 §5.3「cinder 在坡面使用 InstancedMesh 约 220 粒」）。
+ * 同一几何 + 实例矩阵，颜色用 instanceColor 逐粒微差。
+ * @param {object} [opts]
+ * @returns {THREE.InstancedMesh}
+ */
+export function buildCinderDebris(opts = {}) {
+  const { kind = 'cinder', seed = DEFAULT_SEED, count = 220 } = opts;
+  const palette = readScenePalette();
+  const geo = new THREE.IcosahedronGeometry(0.05, 0);
+  const mat = new THREE.MeshStandardMaterial({ roughness: 1, metalness: 0 });
+
+  const mesh = new THREE.InstancedMesh(geo, mat, count);
+  mesh.instanceMatrix.setUsage(THREE.StaticDrawUsage);
+  mesh.name = 'cinder-debris';
+
+  // 确定性 PRNG（同 seed 同画面）
+  let a = (seed + 31) >>> 0;
+  const rand = () => {
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+
+  const dummy = new THREE.Object3D();
+  const color = new THREE.Color();
+  const colors = new Float32Array(count * 3);
+  const base = baseRadius(kind);
+
+  for (let i = 0; i < count; i += 1) {
+    // 越靠坡脚越密（堆积在底部），顶部稀疏
+    const r = CRATER_RADIUS + (base - CRATER_RADIUS) * Math.pow(rand(), 0.65);
+    const theta = rand() * Math.PI * 2;
+    const y = radialHeight(r, theta, kind, seed) + 0.02;
+    const scale = 0.55 + rand() * 1.15;
+
+    dummy.position.set(Math.cos(theta) * r, y, Math.sin(theta) * r);
+    dummy.rotation.set(rand() * Math.PI, rand() * Math.PI, rand() * Math.PI);
+    dummy.scale.set(scale * (0.8 + rand() * 0.5), scale, scale * (0.8 + rand() * 0.5));
+    dummy.updateMatrix();
+    mesh.setMatrixAt(i, dummy.matrix);
+
+    // 用偏暖的层岩色打底 —— 纯灰岩色在冷光下会读成蓝灰色，不像火山渣
+    color.copy(palette.strata).lerp(palette.ash, 0.18 + rand() * 0.4);
+    colors[i * 3] = color.r;
+    colors[i * 3 + 1] = color.g;
+    colors[i * 3 + 2] = color.b;
+  }
+  mesh.instanceColor = new THREE.InstancedBufferAttribute(colors, 3);
+  mesh.instanceMatrix.needsUpdate = true;
+  mesh.castShadow = true;
+  mesh.receiveShadow = true;
+  mesh.computeBoundingSphere();
+  return mesh;
+}
